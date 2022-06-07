@@ -20,6 +20,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { TemplateFormsComponent } from './template-forms/template-forms.component';
+import { PipesComponent } from './pipes/pipes.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { HttpReqComponent } from './http-req/http-req.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { TemplateFormsComponent } from './template-forms/template-forms.componen
     PageNotFoundComponent,
     ErrorPageComponent,
     ReactiveFormsComponent,
-    TemplateFormsComponent
+    TemplateFormsComponent,
+    PipesComponent,ShortenPipe,
+    FilterPipe,
+    HttpReqComponent
   ],
   imports: [
     BrowserModule,

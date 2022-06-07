@@ -3,7 +3,7 @@
 <body>
     <h1>Routing --ALL</h1>
     <div class="container">
-        <div class="">
+        <div>
             <button type="button" class="btn btn-primary" routerLink="/" role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a >Home</a>
             </button>
@@ -32,7 +32,7 @@
     <hr>
     <h1>Directives</h1>
     <div class="container">
-        <div class="">
+        <div>
             <hr>
             <!--<button class="btn btn-primary" (click)="showSecret = !showSecret">Display Details</button>-->
             <button type="button" class="btn btn-primary" (click)="onToggleDetails()">Display Details</button> <br> #toggling item
@@ -46,7 +46,7 @@
     <hr>
     <h1>Date and Event Binding</h1>
     <div class="container">
-        <div class="">
+        <div>
             <label>Server Name</label>
             <input type="text" class="form-control" (input)="onUpdateServerName($event)">
             <input type="text" class="form-control" [(ngModel)]="serverName">
@@ -62,7 +62,7 @@
     <hr>
     <h1>Template Forms</h1>
     <div class="container">
-        <div class="">
+        <div>
             <app-template-forms></app-template-forms>
         </div>
     </div>
@@ -70,11 +70,26 @@
     <hr>
     <h1>Reactive Forms</h1>
     <div class="container">
-        <div class="">
+        <div>
             <app-reactive-forms></app-reactive-forms>
         </div>
     </div>
-
+    <br>
+    <hr>
+    <h1>Pipes</h1>
+    <div class="container">
+        <div>
+            <app-pipes></app-pipes>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <h1>HTTP & Backend</h1>
+    <div class="container">
+        <div>
+            <app-http-req></app-http-req>
+        </div>
+    </div>
 </body>
 
 </html>
