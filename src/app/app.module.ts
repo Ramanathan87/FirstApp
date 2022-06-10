@@ -21,9 +21,22 @@ import { ServerResolver } from './servers/server/server-resolver.service';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { TemplateFormsComponent } from './template-forms/template-forms.component';
 import { PipesComponent } from './pipes/pipes.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { HttpReqComponent } from './http-req/http-req.component';
+import { LoggingInterceptorService } from './http-req/logging-interceptor.service';
+import { AuthInterceptorService } from './http-req/auth-interceptor.service';
+import { AuthnComponent } from './authn/authn.component';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environments/environment';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { AuthNGuard } from './authn/AuthGuard';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+// import { provideAuth,getAuth } from '@angular/fire/auth';
+// import { provideDatabase,getDatabase } from '@angular/fire/database';
+// import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -40,14 +53,32 @@ import { HttpReqComponent } from './http-req/http-req.component';
     TemplateFormsComponent,
     PipesComponent,ShortenPipe,
     FilterPipe,
-    HttpReqComponent
+    HttpReqComponent,
+    AuthnComponent,
+    RxjsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideAuth(() => getAuth()),
+    // provideDatabase(() => getDatabase()),
+    // provideFirestore(() => getFirestore())
   ],
-  providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver],
+  providers: [ServersService, AuthService, AuthGuard,AuthNGuard, CanDeactivateGuard, ServerResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

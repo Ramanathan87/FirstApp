@@ -1,0 +1,33 @@
+<html>
+
+<body>
+    <div *ngIf="isAuthn" class="spinner"></div>
+
+    <div *ngIf="!isAuthn" class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="email" email ngModel name="email" required #email="ngModel" class="form-control">
+                    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" minlength="6" maxlength="10" ngModel name="password" required #password="ngModel" class="form-control">
+                    <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid Password!</span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid || error!==''">{{islogin?'Login':'Signin'}}</button> |
+                    <button type="button" class="btn btn-primary" (click)="switchAuth()">Switch to {{islogin?'Signin':'Login'}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="error">
+        <h1>An Error Occurred!</h1>
+        <p>{{ error }}</p>
+        <button class="btn btn-danger" (click)="error=''">Okay</button>
+    </div>
+</body>
+
+</html>

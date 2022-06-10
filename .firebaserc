@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firstapp-168dc": {
+      "hosting": {
+        "FirstApp": [
+          "firstapp-168dc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firstapp-168dc"
+  }
+}

@@ -2,4 +2,5 @@
 <p>User with ID {{ user.id }} loaded.</p>
 <p>User name is {{ user.name }}</p>
 <hr>
-<button [routerLink]="['/users', 10, 'Anna']">Load Anna (10)</button>
+<a [routerLink]="['/home/users', 10, 'Anna']" class="btn btn-primary">Load Anna (10)</a> &nbsp;|&nbsp;
+<a (click)="loadanna()" class="btn btn-primary">Load Anna (10)</a>

@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://identitytoolkit.googleapis.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

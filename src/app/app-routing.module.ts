@@ -12,31 +12,40 @@ import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
+import { AuthnComponent } from './authn/authn.component';
+import { AuthNGuard } from './authn/AuthGuard';
 
 const appRoutes: Routes = [
-  {path:'',redirectTo:'home',pathMatch:'full'},
-  { path: 'home', component: HomeComponent },
-  { path: 'users', component: UsersComponent, children: [
-    { path: ':id/:name', component: UserComponent }
-  ] },
-  {
-    path: 'servers',
-    // canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
-    component: ServersComponent,
-    children: [
-    { path: ':id', component: ServerComponent,resolve:{server:ServerResolver}},
-    { path: ':id/edit', canDeactivate:[AuthGuard], component: EditServerComponent }
-  ] },
+  {path:'',redirectTo:'auth',pathMatch:'full'},
+  {path:'auth',component:AuthnComponent},
+  {path: 'home', component: HomeComponent, canActivate:[AuthNGuard],
+    children:[
+      {path: 'users', component: UsersComponent, 
+        children: [
+          { path: ':id/:name', component: UserComponent }
+        ] 
+      },
+      {
+        path: 'servers',
+        // canActivate: [AuthGuard],
+        canActivateChild: [AuthNGuard],
+        component: ServersComponent,
+        children: [
+          { path: ':id', component: ServerComponent,resolve:{server:ServerResolver}},
+          { path: ':id/edit', canDeactivate:[AuthGuard], component: EditServerComponent }
+        ]  
+      }
+    ] 
+  },
   { path: 'not-found', component: PageNotFoundComponent },
-  { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
+  { path: 'error', component: ErrorPageComponent, data: {message: 'Unauthorized Access..!'} },
   { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, {useHash: true})
-    // RouterModule.forRoot(appRoutes)
+    // RouterModule.forRoot(appRoutes, {useHash: true})
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule]
 })
