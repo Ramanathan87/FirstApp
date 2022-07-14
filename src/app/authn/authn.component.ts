@@ -11,6 +11,10 @@ interface CRE { email: string, password: string }
 })
 export class AuthnComponent implements OnInit {
 
+  active=false;
+  like(){
+    this.active=!this.active;
+  }
   islogin: boolean = false;
   isAuthn: boolean = false;
   error: string = "";
@@ -79,7 +83,7 @@ export class AuthnComponent implements OnInit {
             this.authSer.newUser(res.user?.email,res.user?.uid,token).subscribe(sub=>{
               if(sub){
                 this.router.navigate(['home']);
-                this.authSer.autoLogOut();
+                // this.authSer.autoLogOut();
               }
             });
           });

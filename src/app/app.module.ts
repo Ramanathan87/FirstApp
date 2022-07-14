@@ -33,6 +33,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthNGuard } from './authn/AuthGuard';
+import { SpringbootComponent } from './springboot/springboot.component';
 // import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
 // import { provideDatabase,getDatabase } from '@angular/fire/database';
@@ -55,7 +56,8 @@ import { AuthNGuard } from './authn/AuthGuard';
     FilterPipe,
     HttpReqComponent,
     AuthnComponent,
-    RxjsComponent
+    RxjsComponent,
+    SpringbootComponent
   ],
   imports: [
     BrowserModule,

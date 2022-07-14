@@ -78,4 +78,6 @@ export class HttpReqComponent implements OnInit {
     console.log(id);
     
   }
+  
+
 }

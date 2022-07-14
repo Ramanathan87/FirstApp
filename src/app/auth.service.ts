@@ -70,6 +70,7 @@ export class AuthService {
       if(this.userOBj){
         obs.next(true)
         localStorage.setItem('UserData',JSON.stringify(this.userOBj));
+        // this.autoLogOut();
       }
       else{
         obs.next(false)
@@ -97,6 +98,7 @@ export class AuthService {
       this.token=this.userOBj.token;
       console.log(this.token);
       localStorage.setItem('UserData',JSON.stringify(this.userOBj));
+      // this.autoLogOut()
       return this.userOBj;
     }
     else{
@@ -106,7 +108,7 @@ export class AuthService {
   autoLogOut(){
     setTimeout(() => {
       this.logout();
-    }, 300000);
+    }, 900000);
   }
   getUserSub():User|null{
     if(this.userOBj){

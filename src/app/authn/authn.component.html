@@ -8,7 +8,7 @@
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                 <div class="form-group">
                     <label for="Email">Email</label>
-                    <input type="email" email ngModel name="email" required #email="ngModel" class="form-control">
+                    <input type="email" email autofocus ngModel name="email" required #email="ngModel" class="form-control">
                     <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
                 </div>
                 <div class="form-group">
@@ -27,7 +27,29 @@
         <h1>An Error Occurred!</h1>
         <p>{{ error }}</p>
         <button class="btn btn-danger" (click)="error=''">Okay</button>
+
+
     </div>
+
+
+
+    <!-- <div>
+
+
+
+        <div>
+            <label for="">NAME</label>
+            <input type="text" class="form-control" name="name" required minlength="6" ngModel #name="ngModel">
+            <span *ngIf="(name.touched && !name.valid)">Name is invalid</span>
+            <span *ngIf="(name.touched && !name.valid)">Name is invalid</span>
+
+        </div>
+        <button [ngClass]="active?'btn btn-primary':'btn btn-danger'" (click)="like()">ksdnvjsdb</button>
+
+
+
+
+    </div> -->
 </body>
 
 </html>
